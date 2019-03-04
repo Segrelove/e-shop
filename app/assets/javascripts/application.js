@@ -12,5 +12,10 @@
 //
 //= require rails-ujs
 //= require activestorage
-//= require turbolinks
 //= require_tree .
+//= require go
+//= require js/vendor.min
+//= require js/jquery.accordion
+//= require js/jquery.selectric
+//= require js/modernizr
+//= require js/prism
