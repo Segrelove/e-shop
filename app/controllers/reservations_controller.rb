@@ -21,9 +21,7 @@ class ReservationsController < ApplicationController
 
   end
 
+  def show
 
-
-def show
-
-end
+  end
 end
