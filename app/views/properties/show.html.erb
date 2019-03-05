@@ -1,1 +1,15 @@
-<h1> SALUT MATHIEU </h1>
+<%= render "layouts/navbar" %>
+
+
+<div class="image image-overlay image-scrolling" style="background-image:url(<%=asset_path('sofa.jpg')%>);     max-height: 750px;"
+  data--100-bottom-top="transform: translateY(0%);" 
+  data-top-bottom="transform: translateY(25%);">
+</div>
+
+<%= render "layouts/property_show_photo_description", property: @property %>
+
+<%= render "layouts/property_show_carrousel" %>
+
+<%= render "layouts/steps" %>
+
+<%= render "layouts/footer" %>
