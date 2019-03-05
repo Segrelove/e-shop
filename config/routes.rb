@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   get 'ui/show'
   get 'ui/order'
   get 'ui/cart'
+  get 'ui/profile'
 
   devise_for :users
   resources :properties, only: [:index, :show]
