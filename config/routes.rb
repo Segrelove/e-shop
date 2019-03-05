@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  get 'ui/index'
+  get 'ui/demo'
+  get 'ui/homepage'
   devise_for :users
   resources :properties, only: [:index, :show]
   resources :users, only: [:index, :show]
