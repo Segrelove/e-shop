@@ -10,12 +10,13 @@
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
 //
-//= require rails-ujs
-//= require activestorage
-//= require_tree .
-//= require go
+
 //= require js/vendor.min
 //= require js/jquery.accordion
 //= require js/jquery.selectric
 //= require js/modernizr
 //= require js/prism
+//= require rails-ujs
+//= require activestorage
+//= require_tree .
+//= require go

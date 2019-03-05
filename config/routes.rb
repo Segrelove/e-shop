@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   get 'ui/demo'
   get 'ui/homepage'
   get 'ui/cart'
+  get 'ui/profile'
 
   devise_for :users
   resources :properties, only: [:index, :show]
