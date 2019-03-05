@@ -1,6 +1,7 @@
 class Property < ApplicationRecord
   has_many :reservations
   has_many :tenants, through: :reservations
+  has_many :images
   belongs_to :agent, class_name: "User"
 
 
