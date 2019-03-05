@@ -35,8 +35,10 @@
                   Michael Doe
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                  <%= link_to "Profile", user_path(1), class: "dropdown-item" %>
-                  <%= link_to "Log out", new_user_session_path, class: "dropdown-item" %>
+                  <%if user_signed_in?%>
+                  <%= link_to "Profile", user_path(current_user), class: "dropdown-item" %>
+                  <%= link_to "Log out", destroy_user_session_url, method: :delete, class: "dropdown-item" %>
+                  <%end%>
                   <%= link_to "Sign up", new_user_registration_path, class: "dropdown-item" %>
                 </div>
               </li>
