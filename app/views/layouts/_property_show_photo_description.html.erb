@@ -28,6 +28,7 @@
                       <h5 class="card-title"><%= property.surface %> m2</h5>
                       <h5 class="card-title">2 chambres</h5>
                       <p class="card-text"><%= property.description %></p>
+                      <%= button_to "Postuler", reservations_path, method: :post, class: 'btn btn-primary' %>
                       <a href="#" class="btn btn-primary">Postuler</a>
                     </div>
                     <div class="card-footer text-muted">

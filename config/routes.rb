@@ -5,9 +5,12 @@ Rails.application.routes.draw do
   get 'ui/cart'
 
   devise_for :users
+  
   resources :properties, only: [:index, :show]
+
   resources :users, only: [:index, :show]
-  resources :properties do resources :reservations, only: [:new, :create, :index]
-  end
+
+  resources :reservations, only: [:new, :create]
+
   root 'properties#index'
 end
