@@ -17,6 +17,5 @@
  *= require go_style
  *= require style
  *= require font-awesome
-
-
+*= require icomoon-free/style
  */

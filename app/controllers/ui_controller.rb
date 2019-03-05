@@ -7,6 +7,12 @@ class UiController < ApplicationController
 
 
   def cart
+
+  end
+
+  def order
+  	
+
   end
 
 

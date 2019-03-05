@@ -2,6 +2,8 @@ Rails.application.routes.draw do
   get 'ui/index'
   get 'ui/demo'
   get 'ui/homepage'
+  get 'ui/show'
+  get 'ui/order'
   get 'ui/cart'
   get 'ui/profile'
 

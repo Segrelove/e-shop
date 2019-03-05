@@ -16,6 +16,7 @@
 //= require js/jquery.selectric
 //= require js/modernizr
 //= require js/prism
+
 //= require rails-ujs
 //= require activestorage
 //= require_tree .
