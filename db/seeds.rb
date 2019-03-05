@@ -9,10 +9,14 @@ require "faker"
 
 User.destroy_all
 ActiveRecord::Base.connection.reset_pk_sequence!('users')
-Reservation.destroy_all
-ActiveRecord::Base.connection.reset_pk_sequence!('reservations')
+Cart.destroy_all
+ActiveRecord::Base.connection.reset_pk_sequence!('carts')
+Image.destroy_all
+ActiveRecord::Base.connection.reset_pk_sequence!('images')
 Property.destroy_all
 ActiveRecord::Base.connection.reset_pk_sequence!('properties')
+Reservation.destroy_all
+ActiveRecord::Base.connection.reset_pk_sequence!('reservations')
 
 30.times do
   u = User.new(first_name: Faker::Name.first_name,
@@ -28,16 +32,21 @@ end
   price: rand(600..5000),
   surface: rand(10..120),
   description: Faker::Address.full_address,
-  image_url: 'https://edito.seloger.com/sites/default/files/styles/manual_crop_640x412/public/guide/images/check-list-lumiosite-appartement.jpg?itok=C6yrQhs4',
   agent_id: rand(1..5))
+  i = Image.new(property_id: p.id, description: 'Super appart', url: 'https://s-ec.bstatic.com/images/hotel/max1024x768/716/71622578.jpg')
+  i.save
   p.save
   puts "Property n° #{p.id} created"
 end
 
+5.times do 
+  c = Cart.new(status: "Pending")
+  c.save 
+end
 
-
-10.times do
-  r = Reservation.new(status: "Pending", property_id: rand(1..10), tenant_id: rand(1..30))
+5.times do
+  r = Reservation.new(property_id: rand(1..10), tenant_id: rand(1..5), cart_id: rand(1..2))
   r.save
   puts "Reservation n° #{r.id} created"
 end
+

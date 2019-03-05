@@ -10,10 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_03_05_100644) do
+ActiveRecord::Schema.define(version: 2019_03_05_153431) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "carts", force: :cascade do |t|
+    t.string "status"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "tenant_id"
+    t.index ["tenant_id"], name: "index_carts_on_tenant_id"
+  end
 
   create_table "images", force: :cascade do |t|
     t.bigint "property_id"
@@ -22,6 +30,22 @@ ActiveRecord::Schema.define(version: 2019_03_05_100644) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["property_id"], name: "index_images_on_property_id"
+  end
+
+  create_table "join_table_order_properties", force: :cascade do |t|
+    t.bigint "order_id"
+    t.bigint "property_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["order_id"], name: "index_join_table_order_properties_on_order_id"
+    t.index ["property_id"], name: "index_join_table_order_properties_on_property_id"
+  end
+
+  create_table "orders", force: :cascade do |t|
+    t.bigint "tenant_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["tenant_id"], name: "index_orders_on_tenant_id"
   end
 
   create_table "properties", force: :cascade do |t|
@@ -36,13 +60,12 @@ ActiveRecord::Schema.define(version: 2019_03_05_100644) do
   end
 
   create_table "reservations", force: :cascade do |t|
-    t.string "status"
     t.bigint "property_id"
-    t.bigint "tenant_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "cart_id"
+    t.index ["cart_id"], name: "index_reservations_on_cart_id"
     t.index ["property_id"], name: "index_reservations_on_property_id"
-    t.index ["tenant_id"], name: "index_reservations_on_tenant_id"
   end
 
   create_table "users", force: :cascade do |t|

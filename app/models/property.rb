@@ -1,9 +1,11 @@
 class Property < ApplicationRecord
   has_many :reservations
-  has_many :tenants, through: :reservations
+  has_many :carts, through: :reservations
+  has_many :join_table_order_properties
+  has_many :orders, through: :join_table_order_properties
+  has_many :tenants, through: :orders
   has_many :images
   belongs_to :agent, class_name: "User"
-
 
   validates :title, presence: true, length: { in: 3 ..140 }
   validates :description, presence: true, length: { in: 20..1000 }

@@ -4,10 +4,12 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
   :recoverable, :rememberable, :validatable
 
-  has_many :reservations, foreign_key: "tenant_id", class_name: "Reservation"
-  has_many :interested_properties, foreign_key: 'tenant_id', class_name: 'Property', through: :reservations
-  has_many :managed_properties, foreign_key: 'agent_id', class_name: 'Property'
 
+
+  has_many :managed_properties, foreign_key: 'agent_id', class_name: 'Property'
+  has_one :cart, foreign_key:'tenant_id', class_name: 'Cart'
+  has_many :orders, foreign_key: 'tenant_id', class_name: 'Cart'
+  has_many :visited_properties, foreign_key: 'tenant_id', class_name: 'Property', through: :orders
 
     validates :first_name, presence: true, length: { in: 2..30 }
     validates :last_name, presence: true, length: { in: 2..30 }
