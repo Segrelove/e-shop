@@ -5,7 +5,9 @@ class UiController < ApplicationController
   def demo
   end
 
-  def show
+
+  def cart
   end
+
 
 end
