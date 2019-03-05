@@ -3,6 +3,8 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
   :recoverable, :rememberable, :validatable
+  after_create :create_cart()
+  before_action :authenticate_user!
 
 
 
@@ -11,8 +13,14 @@ class User < ApplicationRecord
   has_many :orders, foreign_key: 'tenant_id', class_name: 'Cart'
   has_many :visited_properties, foreign_key: 'tenant_id', class_name: 'Property', through: :orders
 
-    validates :first_name, presence: true, length: { in: 2..30 }
-    validates :last_name, presence: true, length: { in: 2..30 }
-    validates :email, presence: true, format: { with: /\A[^@\s]+@([^@\s]+\.)+[^@\s]+\z/ }
-    validates :encrypted_password, presence: true, length: { minimum: 6 }
+  validates :first_name, presence: true, length: { in: 2..30 }
+  validates :last_name, presence: true, length: { in: 2..30 }
+  validates :email, presence: true, format: { with: /\A[^@\s]+@([^@\s]+\.)+[^@\s]+\z/ }
+  validates :encrypted_password, presence: true, length: { minimum: 6 }
+
+  private
+  def create_cart()
+    Cart.create!(tenant_id: current_user.id)
+  end
+
 end
