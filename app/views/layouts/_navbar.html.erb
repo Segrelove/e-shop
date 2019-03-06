@@ -24,21 +24,23 @@
 
             <ul class="navbar-nav align-items-center mr-0">
             	 <li class="nav-item">
-                <%=link_to cart_path(current_user.carts.where(current: true).ids), class:"nav-link" do%>
+               <% if user_signed_in? %>
+                <%= link_to cart_path(current_user.carts.where(current: true).ids), class:"nav-link" do %>
                 	<span style="font-size: 20px; line-height:20px;">
                   	<i class="fas fa-shopping-bag"></i>
                   </span>
-                <%end%>
+                <% end %>
+              <% end %>
               </li>
               <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown-2" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                   Michael Doe
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                  <%if user_signed_in?%>
+                  <%if user_signed_in? %>
                   <%= link_to "Profile", user_path(current_user), class: "dropdown-item" %>
                   <%= link_to "Log out", destroy_user_session_url, method: :delete, class: "dropdown-item" %>
-                  <%end%>
+                  <% end %>
                   <%= link_to "Sign up", new_user_registration_path, class: "dropdown-item" %>
                 </div>
               </li>
