@@ -1,7 +1,6 @@
 class CartsController < ApplicationController
 
-
-  before_action :authenticate_user_id
+#  before_action :authenticate_user_id
 
   def show
     @cart = Cart.find(params[:id])
