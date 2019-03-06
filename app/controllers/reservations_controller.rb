@@ -11,23 +11,33 @@ class ReservationsController < ApplicationController
   end
 
   def destroy
+    @reservation = Reservation.find(params[:id])
 
+
+    if @reservation.destroy
+      flash[:success] = "Ta résa a bien été supprimée"
+      redirect_to cart_path(@reservation.cart) 
+    else
+      flash[:danger] = @reservation.errors.full_messages
+      redirect_to cart_path(@reservation.cart)
+    end
   end
 
   def edit
   end
 
   def create
-    #TODO- A AMELIORER
+
     @property=Property.find(params[:property_id])
 
-    @reservation=Reservation.new(property_id: @property.id, cart_id: Cart.last.id)
+    @reservation=Reservation.new(property: @property, cart: Cart.find_by(user: current_user))
     if @reservation.save
-      flash[:success] = "Ton element a bien été ajouté au panier"
+      flash[:success] = "Ton élément a bien été ajouté au panier"
       redirect_to root_path
     else
-      flash[:danger] = "Une erreur s'est produite"
-      redirect_to root_path
+      puts @reservation.errors.full_messages
+      flash[:danger] = @reservation.errors.full_messages
+      redirect_to property_path(@property)
     end
 
   end
