@@ -1,6 +1,12 @@
-<%= render "layouts/navbar" %>
+<%= render "layouts/navbar_light" %>
 
 <div class="container" style="margin-top:150px; margin-bottom:100px;">
+  <div class="row">
+	<%= render "layouts/cart_index_order_card", total_price: @total_price %>
+  </div>
+</div>
+
+<div class="container" style="margin-bottom:100px;">
   <div class="row">
   	<%@reservations.each do |reservation|%>
 		<%= render "layouts/cart_index_properties", reservation: reservation %>
