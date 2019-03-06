@@ -17,7 +17,7 @@ class OrdersController < ApplicationController
 
   def create
     # Amount in cents
-    @amount = 500
+    @amount = Cart.total_price
 
     customer = Stripe::Customer.create({
       email: params[:stripeEmail],

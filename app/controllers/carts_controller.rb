@@ -3,14 +3,13 @@ class CartsController < ApplicationController
 
   def show
     @cart = Cart.find(params[:id])
-<<<<<<< HEAD
-  	@reservations = @cart.reservations
-=======
     @reservations = @cart.reservations
->>>>>>> master
+    @total_price = @cart.total_price
+    puts @total_price
   end
 
   private
+
   def user_params
     params.require(:user).permit(:first_name, :last_name)
   end
@@ -20,5 +19,4 @@ class CartsController < ApplicationController
       redirect_to root_path
     end
   end
-
 end

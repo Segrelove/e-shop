@@ -20,7 +20,6 @@
             <!-- If user is logged in -->
             <%if user_signed_in?%>
             <ul class="navbar-nav align-items-center mr-0">
-<<<<<<< HEAD
             	 <li class="nav-item">
                <% if user_signed_in? %>
                 <%=link_to cart_path(current_user.carts.where(current: true).ids), class:"nav-link" do%>
@@ -30,17 +29,6 @@
                 <%end%>
               <% end %>
               </li>
-=======
-              <li class="nav-item">
-              <% if user_signed_in? %>
-               <%= link_to cart_path(current_user.carts.where(current: true).ids), class:"nav-link" do %>
-                 <span style="font-size: 20px; line-height:20px;">
-                   <i class="fas fa-shopping-bag"></i>
-                 </span>
-               <% end %>
-             <% end %>
-             </li>
->>>>>>> master
               <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown-2" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <%= current_user.email %>
