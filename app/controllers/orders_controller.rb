@@ -1,22 +1,20 @@
 class OrdersController < ApplicationController
   before_action :authenticate_user!
-  before_action :authenticate_user_id, except: [:show]
+  # before_action :authenticate_user_id, except: [:show]
 
   def index
     @orders = Order.where(tenant: current_user)
   end
 
   def show
-
   end
 
   def new
-
   end
 
   def create
     # Amount in cents
-    @amount = Cart.total_price
+    @amount = 500
 
     customer = Stripe::Customer.create({
       email: params[:stripeEmail],
@@ -40,9 +38,7 @@ class OrdersController < ApplicationController
     @cart.reservations.each do |reservation|
       @jointabledata = JoinTableOrderProperty.create(property: reservation.property, order: @order)
      end
-  else
-    puts "#" * 60
-    puts "PAS HELLO"
+     change_cart_status
   end
 
   rescue Stripe::CardError => e
@@ -57,6 +53,19 @@ class OrdersController < ApplicationController
   def authenticate_user_id
     unless current_user.id == params[:id].to_i
       redirect_to root_path
+  # def authenticate_user_id
+  #   unless current_user.id == params[:id].to_i
+  #     puts "t'es niqué"
+  #     redirect_to root_path
+  #   end
+  # end
+
+  def change_cart_status
+    unless current_user.carts.last.current == false
+      u = current_user.carts.last
+      u.update(current: false)
+      u2 = Cart.new(current: true, user: current_user)
+      u2.save
     end
   end
 end

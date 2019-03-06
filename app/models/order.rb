@@ -7,6 +7,8 @@ class Order < ApplicationRecord
   belongs_to :tenant, class_name: "User"
 
 
+
+
   private
   def order_send
     OrderMailer.order_email_tenant(self,self.tenant).deliver_now

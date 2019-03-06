@@ -33,5 +33,7 @@ class User < ApplicationRecord
     cart = Cart.create(user: self, current: true)
   end
 
-
+  def current_cart
+    return Cart.find_by(user: self, current: true)
+  end
 end
