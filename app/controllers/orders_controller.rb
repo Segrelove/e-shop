@@ -5,9 +5,6 @@ class OrdersController < ApplicationController
 
   def index
     @orders = Order.where(tenant: current_user)
-    puts '*' * 60
-    puts @test
-    current_cart
   end
 
   def show 
@@ -42,9 +39,7 @@ class OrdersController < ApplicationController
     @cart.reservations.each do |reservation|
       @jointabledata = JoinTableOrderProperty.create(property: reservation.property, order: @order)
      end
-  else
-    puts "#" * 60 
-    puts "PAS HELLO"
+     change_cart_status
   end
   
   rescue Stripe::CardError => e
@@ -62,16 +57,14 @@ class OrdersController < ApplicationController
   #   end
   # end
 
-  def current_cart
-    if current_user.carts.count == 1
-      puts current_user.carts.last.current == true
-    else
-      puts error 
-    end
-  end
-
   def change_cart_status
-    @cart = Cart.find
+    unless current_user.carts.last.current == false 
+      u = current_user.carts.last
+      puts u
+      u.update(current: false)
+      u2 = Cart.new(current: true, user: current_user)
+      u2.save
+    end
   end
 
 end
