@@ -28,8 +28,12 @@
                       <h5 class="card-title"><%= property.surface %> m2</h5>
                       <h5 class="card-title">2 chambres</h5>
                       <p class="card-text"><%= property.description %></p>
-                      <%=link_to 'test', property_reservations_path(property.id), method: :post, class: "btn btn-primary"%>
-                      <a href="#" class="btn btn-primary">Postuler</a>
+                      <% unless current_user.carts.last.properties.where(id: property.id) %>
+                        <%=link_to 'Postuler', property_reservations_path(property.id), method: :post, class: "btn btn-primary"%>
+                      <%else%>
+                        <b>Vous avez déjà reservé ce bien</b> <br>
+                        <%=link_to 'Voir mon panier', cart_path(current_user.carts.last.id), class: ""%>
+                      <% end %>
                     </div>
                     <div class="card-footer text-muted">
                       2 days ago
