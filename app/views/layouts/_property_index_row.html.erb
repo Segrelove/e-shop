@@ -14,6 +14,12 @@
               </ul>
               </p>
               <%= link_to 'Découvrir', property_path(property.id), class: 'btn btn-orange' %> 
+              <br><br>
+              <% if current_user.carts.last.properties.where(id: property.id).empty?  %>
+                <%=link_to 'Ajout rapide au panier', property_reservations_path(property.id), method: :post, class: "btn btn-primary btn-sm"%>
+              <%else%>
+                <small class="text-primary">Déjà dans votre panier</small>
+              <% end %>
             </div>
           </div>
         </div>
