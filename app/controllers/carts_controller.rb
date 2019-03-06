@@ -6,7 +6,6 @@ class CartsController < ApplicationController
     @cart = Cart.find(params[:id])
     @reservations = @cart.reservations
     @total_price = @cart.total_price
-    puts @total_price
   end
 
   private
