@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   before_action :authenticate_user!
-  before_action :authenticate_user_id, except: [:show]
+  before_action :authenticate_user_id
 
 
   def show
@@ -20,7 +20,7 @@ class UsersController < ApplicationController
       redirect_to root_path
     else
       flash[:error] = "Erreur, veuillez réessayer"
-    end 
+    end
   end
 
 
@@ -30,8 +30,8 @@ class UsersController < ApplicationController
   end
 
   def authenticate_user_id
-    unless current_user.id == params[:id]
-      redirect_to '/users/sign_up'
+    unless current_user.id == params[:id].to_i
+      redirect_to root_path
     end
   end
 

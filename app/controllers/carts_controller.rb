@@ -1,22 +1,26 @@
 class CartsController < ApplicationController
 
+
+  before_action :authenticate_user_id
+
   def show
-  	@cart = Cart.find(params[:id])
-  	@reservations = @cart.reservations
-  	@total_price = total_price(@reservations)
+    @cart = Cart.find(params[:id])
+    @reservations = @cart.reservations
+    @total_price = @cart.total_price
+    puts @total_price
   end
 
+  private
 
+  def user_params
+    params.require(:user).permit(:first_name, :last_name)
+  end
 
-private
+  def authenticate_user_id
+    unless current_user.id == params[:id].to_i
+      redirect_to root_path
+    end
 
-	def total_price(reservations)
-		total_price = 0
-		reservations.each do |reservation|
-			total_price += reservation.property.price
-			puts total_price
-		end
-		return total_price
-	end
+  end
 
 end

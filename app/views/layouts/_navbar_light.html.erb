@@ -1,48 +1,53 @@
 <header class="header-sticky header-dark headroom headroom--not-bottom headroom--pinned headroom--top">
       <div class="container">
         <nav class="navbar navbar-expand-lg navbar_light">
-          <a class="navbar-brand" href="#"> <!-- rootpath -->
+
+          <%= link_to root_path, class: "navbar-brand" do %>
             <span style="font-size: 30px; line-height:30px; color: #14439C;">
+
 						  <i class="fas fa-bell"></i>
 						</span>
-          </a>
+          <% end %>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="burger"><span></span></span></button>
 
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav align-items-center mr-auto">
               <li class="nav-item">
-                <a class="nav-link" href="../../index.html" role="button">
-                  Home <!-- rootpath -->
-                </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="../../index.html" role="button">
-                  Properties <!-- properties_path -->
-                </a>
+                <%= link_to "Home", root_path, class: "nav-link"%>
               </li>
             </ul>
 
+            <!-- If user is logged in -->
+            <%if user_signed_in?%>
             <ul class="navbar-nav align-items-center mr-0">
             	 <li class="nav-item">
+               <% if user_signed_in? %>
                 <%=link_to cart_path(current_user.carts.where(current: true).ids), class:"nav-link" do%>
                 	<span style="font-size: 20px; line-height:20px;">
                   	<i class="fas fa-shopping-bag"></i>
                   </span>
                 <%end%>
+              <% end %>
               </li>
               <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown-2" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  Michael Doe
+                    <%= current_user.email %>
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                  <%if user_signed_in?%>
-                  <%= link_to "Profile", user_path(current_user), class: "dropdown-item" %>
-                  <%= link_to "Log out", destroy_user_session_url, method: :delete, class: "dropdown-item" %>
-                  <%end%>
-                  <%= link_to "Sign up", new_user_registration_path, class: "dropdown-item" %>
+                    <%= link_to "Profile", user_path(current_user), class: "dropdown-item" %>
+                    <%= link_to "Log out", destroy_user_session_url, method: :delete, class: "dropdown-item" %>
                 </div>
               </li>
             </ul>
+            <% else %>
+            <ul class="navbar-nav align-items-center mr-0">
+              <li class="nav-item">
+                <%= link_to "Se connecter / s'inscrire", new_user_registration_path, class: "nav-link"%>
+              </li>
+            </ul>
+            <% end %>
+
+
           </div>
         </nav>
       </div>
