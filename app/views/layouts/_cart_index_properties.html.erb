@@ -2,9 +2,16 @@
       <div class="card">
         <img class="card-img-right" src="<%=asset_path('sofa.jpg')%>" alt="Card image cap">
         <div class="card-body">
-          <h5 class="card-title"><%=reservation.property.title%></h5>
+          <h5 class="card-title"><%=reservation.property.title%></h5> 
           <p class="card-text"><%=reservation.property.description%></p>
-          <%=link_to "Supprimer", property_reservation_path(reservation.property.id, reservation.id), method: :delete, class:"btn-sm btn-danger"%>
+          <div class="row">
+            <div class="col-6 p-1">
+              <%=link_to "Supprimer", property_reservation_path(reservation.property.id, reservation.id), method: :delete, class:"btn-sm btn-danger"%>
+            </div>
+            <div class="col-6 p-1">
+              <span class="card-title"><%=reservation.property.price%> €</span>
+            </div>
+          </div>
         </div>
       </div>
     </div>

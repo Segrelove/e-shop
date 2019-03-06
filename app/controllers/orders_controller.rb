@@ -8,16 +8,14 @@ class OrdersController < ApplicationController
   end
 
   def show 
-
   end
 
   def new
-
   end
 
   def create
     # Amount in cents
-    @amount = Cart.total_price
+    @amount = 500
 
     customer = Stripe::Customer.create({
       email: params[:stripeEmail],
@@ -55,7 +53,8 @@ class OrdersController < ApplicationController
   private
 
   def authenticate_user_id
-    unless current_user.id == params[:id]
+    unless current_user.id == params[:id].to_i
+      puts "t'es niqué"
       redirect_to root_path
     end
   end
