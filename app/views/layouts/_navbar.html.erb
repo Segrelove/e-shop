@@ -36,7 +36,7 @@
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                     <%= link_to "Profile", user_path(current_user), class: "dropdown-item" %>
                     <%= link_to "Log out", destroy_user_session_url, method: :delete, class: "dropdown-item" %>
-                </div>
+                </div>@
               </li>
             </ul>
             <% else %>
@@ -53,6 +53,3 @@
       </div>
     </header>
 
-    <% flash.each do |key, value| %>
-       <div class="alert alert-<%= key %>" role="alert" m-0><%= value %></div>
-   <% end %>
