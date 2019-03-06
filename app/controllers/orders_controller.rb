@@ -1,10 +1,13 @@
 class OrdersController < ApplicationController
   before_action :authenticate_user!
-  before_action :authenticate_user_id, except: [:show]
+  # before_action :authenticate_user_id, except: [:show]
 
 
   def index
     @orders = Order.where(tenant: current_user)
+    puts '*' * 60
+    puts @test
+    current_cart
   end
 
   def show 
@@ -52,11 +55,24 @@ class OrdersController < ApplicationController
 
   private
 
-  def authenticate_user_id
-    unless current_user.id == params[:id].to_i
-      puts "t'es niqué"
-      redirect_to root_path
+  # def authenticate_user_id
+  #   unless current_user.id == params[:id].to_i
+  #     puts "t'es niqué"
+  #     redirect_to root_path
+  #   end
+  # end
+
+  def current_cart
+    if current_user.carts.count == 1
+      puts current_user.carts.last.current == true
+    else
+      puts error 
     end
   end
+
+  def change_cart_status
+    @cart = Cart.find
+  end
+
 end
 
