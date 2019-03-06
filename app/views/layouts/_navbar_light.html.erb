@@ -24,11 +24,12 @@
               <% if user_signed_in? %>
                <%= link_to cart_path(current_user.carts.where(current: true).ids), class:"nav-link" do %>
                  <span style="font-size: 20px; line-height:20px;">
-                   <i class="fas fa-shopping-bag"></i>
+                   <i class="fas fa-shopping-bag"></i><small> (<%=current_user.carts.last.reservations.size %>)</small>
                  </span>
                <% end %>
              <% end %>
              </li>
+
               <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown-2" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <%= current_user.email %>
@@ -52,7 +53,3 @@
         </nav>
       </div>
     </header>
-
-    <% flash.each do |key, value| %>
-       <div class="alert alert-<%= key %>" role="alert" m-0><%= value %></div>
-   <% end %>

@@ -39,11 +39,28 @@ end
   puts "Property n° #{p.id} created"
 end
 
+# personae pour tests mailing
+a = User.create!(first_name: "Monsieur l'agent",
+last_name: "Immobilier",
+is_admin: false,
+email: "agentdingdong@yopmail.com",
+password: "TEST123")
+t = User.create!(first_name: "Monsieur le locataire",
+last_name: "Immobilier",
+is_admin: false,
+email: "tenantdingdong@yopmail.com",
+password: "TEST123")
+p=Property.create!(title: Faker::Address.street_address,
+price: rand(600..5000),
+surface: rand(10..120),
+description: Faker::Address.full_address,
+agent: a)
+o=Order.create!(tenant:t)
+r=Reservation.create!(order: o, property: p)
 
-
-# 5.times do 
+# 5.times do
 #   c = Cart.new(status: "Pending")
-#   c.save 
+#   c.save
 # end
 
 # 5.times do
@@ -51,4 +68,3 @@ end
 #   r.save
 #   puts "Reservation n° #{r.id} created"
 # end
-
