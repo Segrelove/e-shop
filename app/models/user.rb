@@ -9,22 +9,23 @@ class User < ApplicationRecord
 
 
   has_many :properties, foreign_key: 'agent_id', class_name: 'Property'
-  has_many :carts, foreign_key:'user_id' 
-  has_many :orders, foreign_key: 'tenant_id', class_name: 'Order' 
-  #has_many :visited_properties, foreign_key: 'tenant_id', class_name: 'Property', through: :orders 
+  has_many :carts, foreign_key:'user_id'
+  has_many :orders, foreign_key: 'tenant_id', class_name: 'Order'
+  #has_many :visited_properties, foreign_key: 'tenant_id', class_name: 'Property', through: :orders
 
-    #validates :first_name, presence: true, length: { in: 2..30 }
-    #validates :last_name, presence: true, length: { in: 2..30 }
-    validates :email, presence: true, format: { with: /\A[^@\s]+@([^@\s]+\.)+[^@\s]+\z/ }
-    validates :encrypted_password, presence: true, length: { minimum: 6 }
+  validates :email,
+  presence: {message: "Saisissez l'email"} ,
+  format: { with: /\A[^@\s]+@([^@\s]+\.)+[^@\s]+\z/, message: "L'email n'est pas au bon format"}
+  validates :encrypted_password,
+  presence: {message: "Saisissez votre mot de passe"},
+  length: {minimum: 6, message: "Le mot de passe doit contenir au minimum 6 caractères"}
 
 
 
-
-private
+  private
 
   def cart_creation
-      cart = Cart.create(user: self, current: true)
+    cart = Cart.create(user: self, current: true)
   end
 
 
