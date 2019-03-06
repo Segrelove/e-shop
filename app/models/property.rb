@@ -6,7 +6,7 @@ class Property < ApplicationRecord
   # has_many :tenants, through: :orders
   has_many :images
   belongs_to :agent, class_name: "User"
-  belongs_to :tenants, class_name: "User"
+  # belongs_to :tenants, class_name: "User"
 
   validates :title, presence: true, length: { in: 3 ..140 }
   validates :description, presence: true, length: { in: 20..1000 }

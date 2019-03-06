@@ -21,4 +21,5 @@ Rails.application.routes.draw do
   end
   root 'properties#index'
   resources :carts, only: [:show]
+  resources :orders, only: [:index, :show, :new, :create]
 end
