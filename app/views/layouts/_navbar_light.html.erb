@@ -3,7 +3,7 @@
         <nav class="navbar navbar-expand-lg navbar_light">
 
           <%= link_to root_path, class: "navbar-brand" do %>
-            <span style="font-size: 30px; line-height:30px; color: #fff;">
+            <span style="font-size: 30px; line-height:30px; color: #14439C;">
 
 						  <i class="fas fa-bell"></i>
 						</span>
@@ -24,7 +24,7 @@
               <% if user_signed_in? %>
                <%= link_to cart_path(current_user.carts.where(current: true).ids), class:"nav-link" do %>
                  <span style="font-size: 20px; line-height:20px;">
-                   <i class="fas fa-shopping-bag"></i><small> (<%=current_user.carts.last.reservations.size %>)</small>
+                   <i class="fas fa-shopping-bag"></i><small style= "color:#14439C"> (<%=current_user.carts.last.reservations.size %>)</small>
                  </span>
                <% end %>
              <% end %>
