@@ -60,12 +60,10 @@ class OrdersController < ApplicationController
   def change_cart_status
     unless current_user.carts.last.current == false 
       u = current_user.carts.last
-      puts u
       u.update(current: false)
       u2 = Cart.new(current: true, user: current_user)
       u2.save
     end
   end
-
 end
 

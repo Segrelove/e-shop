@@ -1,5 +1,5 @@
 class CartsController < ApplicationController
-
+  before_action :carts_dead
 #  before_action :authenticate_user_id
 
   def show
@@ -18,7 +18,12 @@ class CartsController < ApplicationController
     unless current_user.id == params[:id].to_i
       redirect_to root_path
     end
+  end
 
+  def carts_dead
+    if current_user.current_cart != true
+      redirect_to root_path 
+    end
   end
 
 end

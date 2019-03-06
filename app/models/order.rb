@@ -4,4 +4,6 @@ class Order < ApplicationRecord
   
   belongs_to :tenant, class_name: "User"
   
+
+
 end
