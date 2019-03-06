@@ -14,7 +14,7 @@ class OrderMailer < ApplicationMailer
       agent = property.agent
       puts "je suis le mail"
       puts "*"*60
-      @url  = "http://ding-dong-production-herokuapp.com/properties/#{@property.id}"
+      @url  = "http://ding-dong-production-herokuapp.com/properties/#{property.id}"
       mail(to: agent.email, subject: 'Vous avez une nouvelle visite de prévue pour votre bien!')
     end
   end
