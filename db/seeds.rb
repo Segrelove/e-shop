@@ -18,7 +18,7 @@ ActiveRecord::Base.connection.reset_pk_sequence!('properties')
 Reservation.destroy_all
 ActiveRecord::Base.connection.reset_pk_sequence!('reservations')
 
-30.times do
+20.times do
   u = User.new(first_name: Faker::Name.first_name,
   last_name: Faker::Name.last_name,
   is_admin: false,
@@ -38,6 +38,8 @@ end
   p.save
   puts "Property n° #{p.id} created"
 end
+
+
 
 # 5.times do 
 #   c = Cart.new(status: "Pending")
