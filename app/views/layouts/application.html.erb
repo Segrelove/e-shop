@@ -15,22 +15,11 @@
   <body>
 
 
-
-
     <% flash.each do |key, value| %>
-       <div class="alert alert-<%= key %>" role="alert" m-0><%= value %></div>
-   <% end %>
-
-
+      <div class="alert alert-<%= key %>" role="alert m-0" style="margin-top:78px"><%= value %></div>
+    <% end %>
 
 
     <%= yield %>
   </body>
 </html>
-
-
-<style>
-  body{
-   
-  }
-</style>
