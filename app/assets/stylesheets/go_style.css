@@ -17237,13 +17237,13 @@ footer {
       box-shadow: 0 0 0 0 rgba(252, 44, 56, 0.5); }
 
 .btn-orange {
-  color: #151515;
+  color: #fff;
   background-color: #FF7F50;
   border-color: #FF7F50; }
   .btn-orange:hover {
-    color: #151515;
-    background-color: #f19818;
-    border-color: #ed920f; }
+    color: #fff;
+    background-color: #E57248;
+    border-color: #E57248; }
   .btn-orange:focus, .btn-orange.focus {
     box-shadow: 0 0 0 0 rgba(243, 168, 60, 0.5); }
   .btn-orange.disabled, .btn-orange:disabled {
