@@ -2,10 +2,9 @@
       <div class="card">
         <img class="card-img-right" src="<%=asset_path('sofa.jpg')%>" alt="Card image cap">
         <div class="card-body">
-          <h5 class="card-title">Property.title</h5>
-          <p class="card-text">Property.description</p>
-          <a href="#" class="btn-sm btn-blue">Ajouter</a>
-          <a href="#" class="btn-sm btn-danger">Supprimer</a>
+          <h5 class="card-title"><%=reservation.property.title%></h5>
+          <p class="card-text"><%=reservation.property.description%></p>
+          <%=link_to "Supprimer", property_reservation_path(reservation.property.id, reservation.id), method: :delete, class:"btn-sm btn-danger"%>
         </div>
       </div>
     </div>
