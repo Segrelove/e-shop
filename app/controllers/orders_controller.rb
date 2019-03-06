@@ -1,4 +1,8 @@
 class OrdersController < ApplicationController
+  before_action :authenticate_user!
+  before_action :authenticate_user_id, except: [:show]
+
+
   def index
     @orders = Order.where(tenant: current_user)
   end
@@ -47,5 +51,13 @@ class OrdersController < ApplicationController
     redirect_to new_order_path
   end
 
+
+  private
+
+  def authenticate_user_id
+    unless current_user.id == params[:id]
+      redirect_to root_path
+    end
+  end
 end
 
