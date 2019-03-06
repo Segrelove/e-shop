@@ -39,14 +39,14 @@ end
   puts "Property n° #{p.id} created"
 end
 
-5.times do 
-  c = Cart.new(status: "Pending")
-  c.save 
-end
+# 5.times do 
+#   c = Cart.new(status: "Pending")
+#   c.save 
+# end
 
-5.times do
-  r = Reservation.new(property_id: rand(1..10), tenant_id: rand(1..5), cart_id: rand(1..2))
-  r.save
-  puts "Reservation n° #{r.id} created"
-end
+# 5.times do
+#   r = Reservation.new(property_id: rand(1..10), tenant_id: rand(1..5), cart_id: rand(1..2))
+#   r.save
+#   puts "Reservation n° #{r.id} created"
+# end
 
