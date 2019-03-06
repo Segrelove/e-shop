@@ -1,5 +1,5 @@
 class CartsController < ApplicationController
-  before_action :carts_dead
+  before_action :is_cart_already_paid, only: [:show]
 #  before_action :authenticate_user_id
 
   def show
@@ -20,10 +20,9 @@ class CartsController < ApplicationController
     end
   end
 
-  def carts_dead
-    if current_user.current_cart != true
+  def is_cart_already_paid
+    if current_user.current_cart.id != params[:id].to_i
       redirect_to root_path 
     end
   end
-
 end

@@ -28,6 +28,6 @@ class User < ApplicationRecord
   end
 
   def current_cart
-    return Cart.where(user: self, current: true)
+    return Cart.find_by(user: self, current: true)
   end
 end
