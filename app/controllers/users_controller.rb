@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
   before_action :authenticate_user!
   before_action :authenticate_user_id
+  after_create :welcome_send
 
 
   def show
@@ -33,6 +34,10 @@ class UsersController < ApplicationController
     unless current_user.id == params[:id].to_i
       redirect_to root_path
     end
+  end
+  
+  def welcome_send
+    UserMailer.welcome_email(self).deliver_now
   end
 
 end
