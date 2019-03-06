@@ -1,8 +1,6 @@
 class OrdersController < ApplicationController
   before_action :authenticate_user!
   before_action :authenticate_user_id, except: [:show]
-  after_create :order_send
-
 
   def index
     @orders = Order.where(tenant: current_user)
@@ -54,10 +52,7 @@ class OrdersController < ApplicationController
 
 
   private    #on récupère l'instance user pour ensuite pouvoir la passer à la view en @userivate
-  def order_send
-    OrderMailer.order_email_tenant(self,self.tenant).deliver_now
-    OrderMailer.order_email_agent(self.properties,self.tenant).deliver_now
-  end
+
 
   def authenticate_user_id
     unless current_user.id == params[:id].to_i

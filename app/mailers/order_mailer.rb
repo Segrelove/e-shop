@@ -11,9 +11,9 @@ class OrderMailer < ApplicationMailer
   def order_email_agent(properties_array, tenant)
     @tenant = tenant
     properties_array.foreach do |property|
-    agent = property.agent
-    @url  = 'http://ding-dong-production-herokuapp.com/properties/#{@property.id}'
-    mail(to: @agent.email, subject: 'Vous avez une nouvelle visite de prévue pour votre bien!')
+      agent = property.agent
+      @url  = 'http://ding-dong-production-herokuapp.com/properties/#{@property.id}'
+      mail(to: @agent.email, subject: 'Vous avez une nouvelle visite de prévue pour votre bien!')
+    end
   end
-
 end

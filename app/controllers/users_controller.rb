@@ -1,8 +1,6 @@
 class UsersController < ApplicationController
   before_action :authenticate_user!
   before_action :authenticate_user_id
-  after_create :welcome_send
-
 
   def show
     @user = User.find(params[:id])
@@ -25,7 +23,9 @@ class UsersController < ApplicationController
   end
 
 
+
   private
+
   def user_params
     params.require(:user).permit(:first_name, :last_name)
   end
@@ -35,9 +35,7 @@ class UsersController < ApplicationController
       redirect_to root_path
     end
   end
-  
-  def welcome_send
-    UserMailer.welcome_email(self).deliver_now
-  end
+
+
 
 end

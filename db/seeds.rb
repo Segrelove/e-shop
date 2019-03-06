@@ -56,7 +56,7 @@ surface: rand(10..120),
 description: Faker::Address.full_address,
 agent: a)
 o=Order.create!(tenant:t)
-r=Reservation.create!(order: o, property: p)
+j=JoinTableOrderProperty.create!(order: o, property: p)
 
 # 5.times do
 #   c = Cart.new(status: "Pending")
