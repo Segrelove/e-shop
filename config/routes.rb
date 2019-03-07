@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+
   get 'ui/index'
   get 'ui/demo'
   get 'ui/homepage'
@@ -12,15 +13,25 @@ Rails.application.routes.draw do
 
   devise_for :users
   resources :properties, only: [:index, :show]
-  resources :users, except: [:show]
+
+  resource :user, except: [:show]
+  get "/user", to: redirect('/mon_profil')
+  get "/mon_profil", to: "users#show"
+
   resources :properties do
     resources :reservations, only: [:new, :create, :index, :destroy]
   end
-  resources :carts, only: [:show]
+
+  resource :cart, except: [:show]
+  get "/cart", :to => redirect('/mon_panier')
+  get "/mon_panier", to: "carts#show"
+
+
   resources :orders, only: [:show, :new, :create]
+  get "/orders", :to => redirect('/mes_commandes')
+  get "/mes_commandes", to: "orders#index"
 
-  get "/users/:id" => "users#show", as: "mon_profil"
+
+  # get "/users/:id" => "users#show", as: "mon_profil"
   # get "/carts/:id" => "carts#show", as: "mon_panier"
-  get "/orders" => "orders#index", as: "mes_commandes"
-
 end
