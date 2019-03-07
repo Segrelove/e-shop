@@ -15,7 +15,7 @@ gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
 # See https://github.com/rails/execjs#readme for more supported runtimes
-gem 'mini_racer', platforms: :ruby 
+gem 'mini_racer', platforms: :ruby
 gem 'table_print'
 gem 'faker'
 gem 'jquery-rails'
@@ -23,6 +23,7 @@ gem 'font-awesome-rails'
 gem 'icomoon-rails'
 gem 'dotenv-rails'
 gem 'devise'
+gem 'simple_form'
 gem 'stripe'
 gem 'rubocop'
 
