@@ -17,6 +17,8 @@ Property.destroy_all
 ActiveRecord::Base.connection.reset_pk_sequence!('properties')
 Reservation.destroy_all
 ActiveRecord::Base.connection.reset_pk_sequence!('reservations')
+Order.destroy_all
+ActiveRecord::Base.connection.reset_pk_sequence!('orders')
 
 20.times do
   u = User.new(first_name: Faker::Name.first_name,
