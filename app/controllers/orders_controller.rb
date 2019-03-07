@@ -4,7 +4,6 @@ class OrdersController < ApplicationController
 
   def index
     @orders = Order.where(tenant: current_user)
-    puts (current_user.current_cart.total_price * 100).to_i
   end
 
   def show
@@ -60,11 +59,11 @@ class OrdersController < ApplicationController
     OrderMailer.order_email_agent(@order.properties,@order.tenant).deliver_now
   end
 
-  def authenticate_user_id
-    unless current_user.id == params[:id].to_i
-      redirect_to root_path
-    end
-  end
+  # def authenticate_user_id
+  #   unless current_user.id == params[:id].to_i
+  #     redirect_to root_path
+  #   end
+  # end
 
   def change_cart_status
     unless current_user.carts.last.current == false
