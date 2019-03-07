@@ -21,22 +21,7 @@
                 </div>
               </div>
             </div>
-            <div class="form-row">
-              <div class="col">
-                <div class="form-group">
-                  <label for="firstName">Email Address</label>
-                  <%= text_field_tag :email,'', class:"form-control", placeholder: user.email %>
-                </div>
-              </div>
-            </div>
-            <div class="form-row">
-              <div class="col">
-                <div class="form-group">
-                  <label for="firstName">Password</label>
-                  <%= password_field_tag :password,'', class:"form-control", placeholder:'New password' %>
-                </div>
-              </div>
-            </div>
+            
 
             <%= submit_tag 'Save changes', class:"btn btn-orange"%>
           <% end %>
