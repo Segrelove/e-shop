@@ -1,4 +1,4 @@
-<%= render "layouts/navbar_light" %>
+<%= render "layouts/navbar" %>
 
 
 <div class="image image-overlay image-scrolling" style="background-image:url(<%=asset_path('sofa.jpg')%>);     max-height: 750px;"
@@ -8,8 +8,20 @@
 
 <%= render "layouts/property_show_photo_description", property: @property %>
 
+<div class="container">
+	<div class="row">
+		<div class="col-6">
+		<%= render "layouts/property_show_description", property: @property %>
+		</div>
+		<div class="col-6">
+				<%= render "layouts/steps" %>
+		</div>
+	</div>
+</div>
+
+
 <%= render "layouts/property_show_carrousel" %>
 
-<%= render "layouts/steps" %>
+
 
 <%= render "layouts/footer" %>
