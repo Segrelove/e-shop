@@ -28,6 +28,7 @@ class User < ApplicationRecord
   def welcome_send
     UserMailer.welcome_email(self).deliver_now
   end
+
   def cart_creation
     cart = Cart.create(user: self, current: true)
   end
