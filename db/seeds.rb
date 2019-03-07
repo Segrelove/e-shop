@@ -27,12 +27,20 @@ ActiveRecord::Base.connection.reset_pk_sequence!('reservations')
   u.save
 end
 
+# personae pour tests mailing
+a = User.create!(first_name: "Monsieur l'agent",
+last_name: "Immobilier",
+is_admin: false,
+email: "agentdingdong@yopmail.com",
+password: "TEST123")
+
+
 10.times do
   p = Property.new(title: Faker::Address.street_address,
   price: rand(600..5000),
   surface: rand(10..120),
   description: Faker::Address.full_address,
-  agent_id: rand(1..5))
+  agent: a)
   i = Image.new(property_id: p.id, description: 'Super appart', url: 'https://s-ec.bstatic.com/images/hotel/max1024x768/716/71622578.jpg')
   i.save
   p.save
@@ -40,11 +48,7 @@ end
 end
 
 # personae pour tests mailing
-a = User.create!(first_name: "Monsieur l'agent",
-last_name: "Immobilier",
-is_admin: false,
-email: "agentdingdong@yopmail.com",
-password: "TEST123")
+
 t = User.create!(first_name: "Monsieur le locataire",
 last_name: "Immobilier",
 is_admin: false,
