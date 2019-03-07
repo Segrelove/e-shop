@@ -14,7 +14,7 @@ Rails.application.routes.draw do
 
   devise_for :users
   resources :properties, only: [:index, :show]
-  resources :users, only: [:index, :show]
+  resources :users, only: [:index, :show, :edit, :update]
   resources :properties do 
   	resources :reservations, only: [:new, :create, :index, :destroy]
   end
