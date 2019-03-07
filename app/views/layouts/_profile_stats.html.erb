@@ -5,7 +5,11 @@
 	    <div class="equal">
 	      <div class="boxed">
 	        <div class="equal-header">
-	          <b class="h2"><%=orders.length%></b>
+            <%if orders.nil? %>
+              <b class="h2">0</b>
+            <%else%>
+	            <b class="h2"><%=orders.length%></b>
+            <%end%>
 	        </div>
 	        <div class="equal-footer">
 	          <span class="text-muted">Commandes</span>
