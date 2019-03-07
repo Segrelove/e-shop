@@ -20,9 +20,6 @@ class PropertiesController < ApplicationController
   end
 
   def create
-    puts "On est dans la create"
-    puts params[:images]
-    #puts params[:images]
     @property = Property.new params.require(:property).permit(:title, :price, :surface, :description)
     @property.image.attach(params[:property][:images])
     @property.agent_id = 1
