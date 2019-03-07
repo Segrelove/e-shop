@@ -1,27 +1,34 @@
-<div class="container">
-  <div class="row">
-    <div class="col-md-6 col-lg-4">
-      <div class="card">
-        <img class="card-img-top" src="../assets/images/demo/image-square-4.jpg" alt="Card image cap">
-        <div class="card-body">
-          <a href="" class="eyebrow mb-1">Design</a>
-          <h4 class="card-title mb-0"><a href="">Planning amazing weddings that you won’t forget.</a></h4>
-        </div>
-        <div class="card-footer">
-          <div class="row align-items-center">
-            <div class="col-8">
-              <a href="" class="btn btn-ico btn-rounded btn-outline-primary"><i class="icon-arrow-right2 fs-20"></i></a>
-            </div>
-            <div class="col-4 text-right">
-              <ul class="list-inline mb-0">
-                <li class="list-inline-item">
-                    <a href="#"><i class="icon-heart2"></i> 50 likes</a>
-                </li>
-              </ul>
+
+      <div class="col-4">
+        <div class="card">
+          <img class="card-img-top" src="<%=asset_path('photo1.jpg')%>" alt="Card image cap">
+          <div class="card-body">
+            <a href="" class="eyebrow mb-1">Paris 18</a>
+            <h4 class="card-title mb-0"><a href=""><%= property.title%></a></h4>
+          </div>
+          <div class="card-footer">
+            <div class="row align-items-center">
+              <div class="col-4">
+                <%= link_to property_path(property.id), class: "btn btn-ico btn-rounded btn-outline-primary" do %>
+                  <i class="icon-arrow-right2 fs-20"></i>
+                <%end%>
+              </div>
+              <div class="col-8 text-right">
+                <ul class="list-inline mb-0">
+                  <li class="list-inline-item">
+                    <%if user_signed_in?%>
+                      <% if current_user.carts.last.properties.where(id: property.id).empty?  %>
+                        <%=link_to 'Ajout rapide au panier', property_reservations_path(property.id), method: :post, class: "btn btn-orange btn-sm"%>
+                      <%else%>
+                        <small class="text-primary">Déjà dans votre panier</small>
+                      <% end %>
+                    <%end%>
+                  </li>
+                </ul>
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
-  </div>
-</div>
+
+

@@ -1,6 +1,8 @@
 <%= render 'layouts/navbar' %>
 
 
+
+
 <section class="p-0">
       <div class="swiper-container swiper-container-half text-white swiper-container-fade swiper-container-horizontal skrollable skrollable-between" data-top-top="transform: translateY(0px);" data-top-bottom="transform: translateY(250px);" style="transform: translateY(0px);">
         <div class="swiper-wrapper">
@@ -39,9 +41,22 @@
 <div id="ancre">
 
 
-	<% @properties.each do |property| %>
-	<%= render 'layouts/property_index_row', property: property %>
-	<% end %>
+<div class="tab-content m-3" >
+  <div class="container" style="margin-top:150px;">
+  	<%rowcount = 0%>
+  	<div class="row">
+			<% @properties.each do |property| %>
+				
+				
+				<%= render 'layouts/property_index_card', property: property %>
+			<% rowcount += 1%>
+			<% if rowcount%3 == 0 %> '</div> <div class="row"><% end%>
+
+			<% end %> 
+
+		</div>
+	</div>
+</div>
 
 </div>
 
