@@ -15,7 +15,7 @@ class ReservationsController < ApplicationController
 
 
     if @reservation.destroy
-      flash[:success] = "Ta résa a bien été supprimée"
+      flash[:success] = "Ta réservation a bien été supprimée"
       redirect_to cart_path(@reservation.cart) 
     else
       flash[:danger] = @reservation.errors.full_messages
@@ -30,7 +30,7 @@ class ReservationsController < ApplicationController
 
     @property=Property.find(params[:property_id])
 
-    @reservation=Reservation.new(property: @property, cart: Cart.find_by(user: current_user))
+    @reservation=Reservation.new(property: @property, cart: current_user.current_cart)
     if @reservation.save
       flash[:success] = "Ton élément a bien été ajouté au panier"
       redirect_to root_path
