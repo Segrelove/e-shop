@@ -1,10 +1,4 @@
 Rails.application.routes.draw do
-  get 'users/index'
-  get 'users/show'
-  get 'users/edit'
-  get 'users/update'
-  get 'users/destroy'
-  get 'carts/show'
   get 'ui/index'
   get 'ui/demo'
   get 'ui/homepage'
@@ -13,13 +7,20 @@ Rails.application.routes.draw do
   get 'ui/cart'
   get 'ui/profile'
 
+
+  root 'properties#index'
+
   devise_for :users
   resources :properties, only: [:index, :show]
-  resources :users, only: [:index, :show]
-  resources :properties do 
-  	resources :reservations, only: [:new, :create, :index, :destroy]
+  resources :users, except: [:show]
+  resources :properties do
+    resources :reservations, only: [:new, :create, :index, :destroy]
   end
-  root 'properties#index'
   resources :carts, only: [:show]
-  resources :orders, only: [:index, :show, :new, :create]
+  resources :orders, only: [:show, :new, :create]
+
+  get "/users/:id" => "users#show", as: "mon_profil"
+  # get "/carts/:id" => "carts#show", as: "mon_panier"
+  get "/orders" => "orders#index", as: "mes_commandes"
+
 end
