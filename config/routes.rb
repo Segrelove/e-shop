@@ -12,7 +12,8 @@ Rails.application.routes.draw do
   root 'properties#index'
 
   devise_for :users
-  resources :properties, only: [:index, :show]
+
+  resources :properties, only: [:index, :show, :new]
 
   resource :user, except: [:show]
   get "/user", to: redirect('/mon_profil')
