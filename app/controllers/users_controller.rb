@@ -2,9 +2,10 @@ class UsersController < ApplicationController
   before_action :authenticate_user!
   before_action :authenticate_user_id
 
+
   def show
     @user = User.find(params[:id])
-    @orders = @user.orders
+
   end
 
   def edit
@@ -12,9 +13,9 @@ class UsersController < ApplicationController
   end
 
   def update
-    puts params
     @user = User.find(params[:id])
-    if @user.update(user_params)
+    @user.update(user_params)
+    if @user.update
       flash[:success] = "Informations correctement modifiées"
       redirect_to root_path
     else
@@ -23,11 +24,9 @@ class UsersController < ApplicationController
   end
 
 
-
   private
-
   def user_params
-    params.permit(:first_name, :last_name, :email, :password)
+    params.require(:user).permit(:first_name, :last_name)
   end
 
   def authenticate_user_id
@@ -35,7 +34,4 @@ class UsersController < ApplicationController
       redirect_to root_path
     end
   end
-
-
-
 end
