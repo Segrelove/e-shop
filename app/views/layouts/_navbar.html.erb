@@ -34,6 +34,7 @@
                     <%= current_user.email %>
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <%= link_to "Mes commandes", orders_path, class: "dropdown-item" %>
                     <%= link_to "Profile", user_path(current_user), class: "dropdown-item" %>
                     <%= link_to "Log out", destroy_user_session_url, method: :delete, class: "dropdown-item" %>
                 </div>
