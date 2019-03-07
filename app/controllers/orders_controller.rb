@@ -4,17 +4,18 @@ class OrdersController < ApplicationController
 
   def index
     @orders = Order.where(tenant: current_user)
+    puts (current_user.current_cart.total_price * 100).to_i
   end
 
   def show
   end
 
-  def new
-  end
+  # def new
+  # end
 
   def create
     # Amount in cents
-    @amount = 500
+    @amount = (current_user.current_cart.total_price * 100).to_i
 
     customer = Stripe::Customer.create({
       email: params[:stripeEmail],
@@ -25,7 +26,7 @@ class OrdersController < ApplicationController
       customer: customer.id,
       amount: @amount,
       description: 'Rails Stripe customer',
-      currency: 'usd',
+      currency: 'eur',
     })
 
   @order = Order.new(tenant: current_user, stripe_customer_id: customer.id)
@@ -33,12 +34,15 @@ class OrdersController < ApplicationController
 
 
   if charge.save
+    flash[:success] = "Vous avez été débité de #{@amount / 100} € !"
     @order.save
     @cart.reservations.each do |reservation|
       @jointabledata = JoinTableOrderProperty.create(property: reservation.property, order: @order)
      end
      change_cart_status
      order_send (@order)
+
+     redirect_to orders_path
   end
 
   rescue Stripe::CardError => e
@@ -48,12 +52,13 @@ class OrdersController < ApplicationController
 
 
 
-  private    #on récupère l'instance user pour ensuite pouvoir la passer à la view en @userivate
+  private    
+  #on récupère l'instance user pour ensuite pouvoir la passer à la view en @userivate
   # on envoie un mail à la création du order
-    def order_send(order)
-      OrderMailer.order_email_tenant(@order,@order.tenant).deliver_now
-      OrderMailer.order_email_agent(@order.properties,@order.tenant).deliver_now
-    end
+  def order_send(order)
+    OrderMailer.order_email_tenant(@order,@order.tenant).deliver_now
+    OrderMailer.order_email_agent(@order.properties,@order.tenant).deliver_now
+  end
 
   def authenticate_user_id
     unless current_user.id == params[:id].to_i
