@@ -4,7 +4,7 @@ class OrderMailer < ApplicationMailer
   def order_email_tenant(order,tenant)
     @tenant = tenant
     @order = order
-    @url  = "http://ding-dong-production-herokuapp.com/mes_commandes"
+    @url  = "http://ding-dong-production.herokuapp.com/mes_commandes"
     mail(to: @tenant.email, subject: 'Votre commande est confirmée, bravo pour votre achat !')
   end
 
@@ -14,7 +14,7 @@ class OrderMailer < ApplicationMailer
       agent = property.agent
       puts "je suis le mail"
       puts "*"*60
-      @url  = "http://ding-dong-production-herokuapp.com/properties/#{property.id}"
+      @url  = "http://ding-dong-production.herokuapp.com/properties/#{property.id}"
       mail(to: agent.email, subject: 'Vous avez une nouvelle visite de prévue pour votre bien!')
     end
   end
