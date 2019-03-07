@@ -2,7 +2,6 @@ Rails.application.routes.draw do
   get 'users/index'
   get 'users/show'
   get 'users/edit'
-  get 'users/update'
   get 'users/destroy'
   get 'carts/show'
   get 'ui/index'
@@ -15,7 +14,7 @@ Rails.application.routes.draw do
 
   devise_for :users
   resources :properties, only: [:index, :show]
-  resources :users, only: [:index, :show]
+  resources :users, only: [:index, :show, :edit, :update]
   resources :properties do 
   	resources :reservations, only: [:new, :create, :index, :destroy]
   end
