@@ -13,7 +13,7 @@ Surface :
 Description : 
 <%= f.text_area :description %> <br><br>
 Image :
-<%= f.file_field :image %> <br><br>
+<%= f.file_field :images, multiple: true %> <br><br>
 
   <%= submit_tag("Créer", :id=>"button", :class=>"Test", :name=>"submit") %>
 

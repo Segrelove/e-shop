@@ -21,7 +21,10 @@ class PropertiesController < ApplicationController
 
   def create
     puts "On est dans la create"
-    @property = Property.new params.require(:property).permit(:title, :price, :surface, :description, :image)
+    puts params[:images]
+    #puts params[:images]
+    @property = Property.new params.require(:property).permit(:title, :price, :surface, :description)
+    @property.image.attach(params[:property][:images])
     @property.agent_id = 1
 
     if @property.save
@@ -32,11 +35,6 @@ class PropertiesController < ApplicationController
     redirect_to new_property_path
     end
 
-  end
-
-
-  def model_params
-    params.require(:property  ).permit(:title, :price, :description, :surface, :image)
   end
 
 
