@@ -15,7 +15,7 @@ class ReservationsController < ApplicationController
 
 
     if @reservation.destroy
-      flash[:success] = "Ta résa a bien été supprimée"
+      flash[:success] = "Ta réservation a bien été supprimée"
       redirect_to cart_path(@reservation.cart) 
     else
       flash[:danger] = @reservation.errors.full_messages
