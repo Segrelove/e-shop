@@ -5,6 +5,9 @@
                   <figure class="photo">
                     <a class="lightbox" href="<%=asset_path('sofa.jpg')%>" title="Image title">
                       <img src="<%=asset_path('sofa.jpg')%>" alt="Image">
+                      <% unless @property.image.nil? %>
+                        <%= image_tag @property.image %>
+                      <%end%>
                     </a>
                   </figure>
                 </div>

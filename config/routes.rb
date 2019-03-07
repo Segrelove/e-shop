@@ -14,7 +14,7 @@ Rails.application.routes.draw do
   get 'ui/profile'
 
   devise_for :users
-  resources :properties, only: [:index, :show]
+  resources :properties, only: [:index, :show, :new]
   resources :users, only: [:index, :show]
   resources :properties do 
   	resources :reservations, only: [:new, :create, :index, :destroy]

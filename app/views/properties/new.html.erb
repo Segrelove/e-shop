@@ -1,0 +1,21 @@
+<h1>Add a property</h1>
+
+
+
+
+<%= form_for @property do |f| %>
+Titre : 
+<%= f.text_field :title %> <br><br>
+Price : 
+<%= f.text_field :price %> <br><br>
+Surface : 
+<%= f.text_field :surface %> <br><br>
+Description : 
+<%= f.text_area :description %> <br><br>
+Image :
+<%= f.file_field :image %> <br><br>
+
+  <%= submit_tag("Créer", :id=>"button", :class=>"Test", :name=>"submit") %>
+
+<% end %>
+
