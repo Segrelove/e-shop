@@ -12,7 +12,7 @@ class User < ApplicationRecord
 
 
   has_many :managed_properties, foreign_key: 'agent_id', class_name: 'Property'
-  has_many :carts, foreign_key:'user_id'
+  has_many :carts
   has_many :orders, foreign_key: 'tenant_id', class_name: 'Order'
   # has_many :visited_properties, foreign_key: 'tenant_id', class_name: 'Property', through: :orders
 
@@ -28,6 +28,7 @@ class User < ApplicationRecord
   def welcome_send
     UserMailer.welcome_email(self).deliver_now
   end
+
   def cart_creation
     cart = Cart.create(user: self, current: true)
   end
