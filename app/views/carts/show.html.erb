@@ -2,7 +2,11 @@
 
 <div class="container" style="margin-top:150px; margin-bottom:100px;">
   <div class="row">
-	<%= render "layouts/cart_index_order_card", total_price: @total_price %>
+  	<% if @cart.reservations.size >0 %>
+			<%= render "layouts/cart_index_order_card", total_price: @total_price %>
+			<% else %>
+			<p>Tu n'as rien dans ton panier, <%= link_to "continue ton shopping", root_path%></p>
+			<%end%>
 
 
 
